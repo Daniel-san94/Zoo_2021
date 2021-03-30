@@ -1,0 +1,50 @@
+﻿@using Zoo.Models
+@using Zoo.Data
+@using Zoo.Controllers
+@model IEnumerable<Zoo.Models.Category>
+
+
+@{ ViewData["Title"] = "Index"; }
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+            
+                    <tr>
+                        <td>
+                            <a href="/Items/Shop"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Image.Link)
+                        </td>
+
+                    </tr>
+           
+        }
+    </tbody>
+</table>
