@@ -47,8 +47,10 @@ namespace Zoo.Controllers
 
         public IActionResult Shop()
         {
-            var items = _context.Items.ToList();
-
+            return View();
+        }
+        public IActionResult Admin()
+        {
             return View();
         }
     }
