@@ -27,24 +27,28 @@
         </tr>
     </thead>
     <tbody>
-
+       
+       
 
         @foreach (var item in Model)
         {
             
-                    <tr>
-                        <td>
-                            <a href="/Items/Shop"> @Html.DisplayFor(modelItem => item.Name)</a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Image.Link)
-                        </td>
+        <tr>
+            @* <td>
+            <a asp-area="" asp-controller="Categories" asp-action="Shop" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+        </td>*@
+            <td>
+                <a href="Items/Shop">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image.Link)
+            </td>
 
-                    </tr>
-           
-        }
+        </tr>
+                
+            }
     </tbody>
 </table>

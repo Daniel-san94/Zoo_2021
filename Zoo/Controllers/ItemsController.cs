@@ -24,10 +24,35 @@ namespace Zoo.Controllers
             var zooContext = _context.Items.Include(i => i.Category).Include(i => i.Image).Include(i => i.Local);
             return View(await zooContext.ToListAsync());
         }
-        public async Task<IActionResult> Shop()
+
+        //biztosítja az itemek rendezhetőségét, amikor az összes terméket nézzük a weboldalon
+        //akkor ez biztositja a rendezhetőséget !!!EZT JAVÍTANI KELL MAJD!!!
+        public async Task<IActionResult> Shop(string sortItem, int Id)
         {
-            var zooContext = _context.Items.Include(i => i.Category).Include(i => i.Image).Include(i => i.Local);
-            return View(await zooContext.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortItem) ? "name_desc" : "";
+            ViewData["PriceSortParm"] = sortItem == "Price" ? "price_desc" : "Price";
+            var items = from i in _context.Items.Include(i => i.Category).Include(i => i.Image).Include(i => i.Local)
+            select i;
+            switch (sortItem)
+            {
+                case "name_desc":
+                    items = items.OrderByDescending(i => i.Name);
+                    break;
+                case "Price":
+                    items = items.OrderBy(i => i.Price);
+                    break;
+                case "price_desc":
+                    items = items.OrderByDescending(i => i.Price);
+                    break;
+                default:
+                    items = items.OrderBy(i => i.Name);
+                    break;
+            }
+            //ezeket ki kellett kommentálni, mert beletettem a az items változóba a zooContext értékét
+            //var zooContext = _context.Items.Include(i => i.Category).Include(i => i.Image).Include(i => i.Local);
+            //return View(await zooContext.ToListAsync());
+            return View(await items.AsNoTracking().ToListAsync());
+
         }
 
         // GET: Items/Details/5
