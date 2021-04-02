@@ -1,7 +1,7 @@
 ﻿
-body {
+.body {
     line-height: 1.5;
-    overflow: auto;
+    overflow: hidden;
 }
 
 a {
@@ -101,4 +101,8 @@ h1 {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.padding{
+    padding:15px,20px,15px,20px;
 }
