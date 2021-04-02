@@ -9,9 +9,9 @@ namespace Zoo.Models
     {
         public Local()
         {
+            AspNetUsers = new HashSet<AspNetUser>();
             Items = new HashSet<Item>();
             LocalItems = new HashSet<LocalItem>();
-            Users = new HashSet<User>();
         }
 
         public int Id { get; set; }
@@ -21,8 +21,8 @@ namespace Zoo.Models
         public int? ImageId { get; set; }
 
         public virtual Image Image { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<LocalItem> LocalItems { get; set; }
-        public virtual ICollection<User> Users { get; set; }
     }
 }

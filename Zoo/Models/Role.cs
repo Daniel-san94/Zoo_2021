@@ -9,13 +9,13 @@ namespace Zoo.Models
     {
         public Role()
         {
-            Users = new HashSet<User>();
+            AspNetUsers = new HashSet<AspNetUser>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

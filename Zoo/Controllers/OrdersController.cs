@@ -21,7 +21,7 @@ namespace Zoo.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var zooContext = _context.Orders.Include(o => o.OrderStatecode).Include(o => o.User);
+            var zooContext = _context.Orders.Include(o => o.OrderStatecode);
             return View(await zooContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace Zoo.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.OrderStatecode)
-                .Include(o => o.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
@@ -49,7 +48,6 @@ namespace Zoo.Controllers
         public IActionResult Create()
         {
             ViewData["OrderStatecodeId"] = new SelectList(_context.OrderStatecodes, "Id", "Name");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
             return View();
         }
 
@@ -67,7 +65,6 @@ namespace Zoo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["OrderStatecodeId"] = new SelectList(_context.OrderStatecodes, "Id", "Name", order.OrderStatecodeId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", order.UserId);
             return View(order);
         }
 
@@ -85,7 +82,6 @@ namespace Zoo.Controllers
                 return NotFound();
             }
             ViewData["OrderStatecodeId"] = new SelectList(_context.OrderStatecodes, "Id", "Name", order.OrderStatecodeId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", order.UserId);
             return View(order);
         }
 
@@ -122,7 +118,6 @@ namespace Zoo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["OrderStatecodeId"] = new SelectList(_context.OrderStatecodes, "Id", "Name", order.OrderStatecodeId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", order.UserId);
             return View(order);
         }
 
@@ -136,7 +131,6 @@ namespace Zoo.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.OrderStatecode)
-                .Include(o => o.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
