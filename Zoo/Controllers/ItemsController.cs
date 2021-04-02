@@ -27,12 +27,22 @@ namespace Zoo.Controllers
 
         //biztosítja az itemek rendezhetőségét, amikor az összes terméket nézzük a weboldalon
         //akkor ez biztositja a rendezhetőséget !!!EZT JAVÍTANI KELL MAJD!!!
-        public async Task<IActionResult> Shop(string sortItem, int Id)
+        public async Task<IActionResult> Shop(string sortItem, int Id, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortItem) ? "name_desc" : "";
             ViewData["PriceSortParm"] = sortItem == "Price" ? "price_desc" : "Price";
+            ViewData["CurrentFilter"] = searchString;
+
+
             var items = from i in _context.Items.Include(i => i.Category).Include(i => i.Image).Include(i => i.Local)
             select i;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(i => i.Name.Contains(searchString));
+
+            }
+
             switch (sortItem)
             {
                 case "name_desc":

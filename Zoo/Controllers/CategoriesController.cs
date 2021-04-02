@@ -35,15 +35,23 @@ namespace Zoo.Controllers
         }
 
         //ez a metódus rendezi kategóriákba a termékeket és név illetve ár szerinti rendezés van benne
-        public async Task<IActionResult> GetCategoryDetails(string sortItem, int Id)
+        public async Task<IActionResult> GetCategoryDetails(string sortItem, int Id, string searchString)
         {
             //ez egy linq lekérdezés ahol az item id egyezik a category id-vel és be vannak includeolva az idegen kulcsok
             var itemList = await _context.Items.Where(x => x.CategoryId == Id).Include(i => i.Category).Include(i => i.Image).Include(i => i.Local).ToListAsync();
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortItem) ? "name_desc" : "";
             ViewData["PriceSortParm"] = sortItem == "Price" ? "price_desc" : "Price";
+            ViewData["CurrentFilter"] = searchString;
             var items = from i in itemList
                         select i;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(i => i.Name.Contains(searchString));
+                                       
+            }
+
             switch (sortItem)
             {
                 case "name_desc":
