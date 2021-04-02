@@ -13,10 +13,12 @@ namespace Zoo.Models
         }
 
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int OrderStatecodeId { get; set; }
 
         public virtual OrderStatecode OrderStatecode { get; set; }
+        public virtual AspNetUser User { get; set; }
+
 
         //Ehelyett majd AspNetUser kell
         //public virtual User User { get; set; }

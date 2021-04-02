@@ -426,12 +426,12 @@ modelBuilder.Entity<AspNetRole>(entity =>
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK___order__order_st__1332DBDC");
 
-                //Ide majd AspNetUser kell
-              /*entity.HasOne(d => d.User)
+                
+              entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK___order__user_id__339FAB6E");*/
+                    .HasConstraintName("FK___order__user_id__339FAB6E");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
