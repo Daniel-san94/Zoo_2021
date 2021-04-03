@@ -36,19 +36,34 @@ namespace Zoo.Controllers
             //return View();
         }
 
-        public IActionResult Zoo2()
+        public async Task<IActionResult> Zoo2()
         {
-            return View();
+
+            IQueryable<Image> kepek = from m in _context.Images
+                                      select m;
+            kepek = kepek.Where(s => s.Local_id == 2);
+            return View(await kepek.ToListAsync());
+            //return View();
         }
 
-        public IActionResult Zoo3()
+        public async Task<IActionResult> Zoo3()
         {
-            return View();
+
+            IQueryable<Image> kepek = from m in _context.Images
+                                      select m;
+            kepek = kepek.Where(s => s.Local_id == 3);
+            return View(await kepek.ToListAsync());
+            //return View();
         }
 
-        public IActionResult Zoo4()
+        public async Task<IActionResult> Zoo4()
         {
-            return View();
+
+            IQueryable<Image> kepek = from m in _context.Images
+                                      select m;
+            kepek = kepek.Where(s => s.Local_id == 4);
+            return View(await kepek.ToListAsync());
+            //return View();
         }
 
         public IActionResult Shop()
