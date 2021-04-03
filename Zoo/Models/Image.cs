@@ -20,6 +20,8 @@ namespace Zoo.Models
         public string Link { get; set; }
         public string Description { get; set; }
 
+        public int Local_id { get; set; }
+
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Costumer> Costumers { get; set; }
         public virtual ICollection<Item> Items { get; set; }

@@ -19,10 +19,22 @@ namespace Zoo.Controllers
         }
 
         // GET: Images
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() //(int? Local_id)
         {
-            return View(await _context.Images.ToListAsync());
+
+ //           if (!Local_id.HasValue)
+ //           {
+                return View(await _context.Images.ToListAsync());
+ //           }
+ //           else
+ //           {
+ //               IQueryable<Image> kepek = from m in _context.Images
+ //                           select m;
+ //               kepek = kepek.Where(s => s.Local_id == Local_id);
+ //               return View(await kepek.ToListAsync());
+ //           }
         }
+
 
         // GET: Images/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -53,7 +65,7 @@ namespace Zoo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Link,Description")] Image image)
+        public async Task<IActionResult> Create([Bind("Id,Name,Link,Description,Local_id")] Image image)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +97,7 @@ namespace Zoo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Link,Description")] Image image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Link,Description,Local_id")] Image image)
         {
             if (id != image.Id)
             {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Zoo.Controllers
 {
@@ -25,9 +26,14 @@ namespace Zoo.Controllers
             return View();
         }
 
-        public IActionResult Zoo1()
+        public async Task<IActionResult> Zoo1()
         {
-            return View();
+
+            IQueryable<Image> kepek = from m in _context.Images
+                                      select m;
+            kepek = kepek.Where(s => s.Local_id == 1);
+            return View(await kepek.ToListAsync());
+            //return View();
         }
 
         public IActionResult Zoo2()
@@ -53,6 +59,7 @@ namespace Zoo.Controllers
         {
             return View();
         }
+
     }
 }
 
