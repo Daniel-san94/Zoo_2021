@@ -8,13 +8,13 @@
       "type": "mssql",
       "connectionId": "DbConnection"
     },
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "allatkert_db"
-    },
     "secrets1": {
       "type": "secrets",
       "connectionId": "VaultUri"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "allatkert_db"
     }
   }
 }
