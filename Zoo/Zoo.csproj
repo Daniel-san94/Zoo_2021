@@ -115,12 +115,6 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.js" />
     <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
-    <None Include="wwwroot\lib\jquery\jquery.js" />
-    <None Include="wwwroot\lib\jquery\jquery.min.js" />
-    <None Include="wwwroot\lib\jquery\jquery.min.map" />
-    <None Include="wwwroot\lib\jquery\jquery.slim.js" />
-    <None Include="wwwroot\lib\jquery\jquery.slim.min.js" />
-    <None Include="wwwroot\lib\jquery\jquery.slim.min.map" />
     <None Include="wwwroot\mov\_Layout.cshtml" />
     <None Include="wwwroot\mov\_LoginPartial.cshtml" />
     <None Include="wwwroot\webfonts\fa-brands-400.svg" />
@@ -129,6 +123,10 @@
     <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\webfonts\fa-solid-900.svg" />
     <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Szeged\" />
   </ItemGroup>
 
 </Project>

@@ -2,14 +2,15 @@
 .body {
     line-height: 1.5;
     overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
-    text-decoration: none;
-    color: var(--primary-color);
+    text-decoration:none;
+    color: azure;
 }
 
-h1 {
+.h1 {
     font-weight: 300;
     font-size: 60px;
     line-height: 1.2;
