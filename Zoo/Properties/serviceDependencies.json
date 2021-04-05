@@ -4,6 +4,10 @@
       "type": "mssql",
       "connectionId": "AllatkertAuthDbContextConnection"
     },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "VaultUri"
+    },
     "mssql3": {
       "type": "mssql",
       "connectionId": "DbConnection"
@@ -11,10 +15,6 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "allatkert_db"
-    },
-    "secrets1": {
-      "type": "secrets",
-      "connectionId": "VaultUri"
     }
   }
 }
