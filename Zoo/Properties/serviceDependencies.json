@@ -8,6 +8,9 @@
       "type": "secrets",
       "connectionId": "VaultUri"
     },
+    "secrets2": {
+      "type": "secrets"
+    },
     "mssql3": {
       "type": "mssql",
       "connectionId": "DbConnection"

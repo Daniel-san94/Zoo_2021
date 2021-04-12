@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Zoo.Models.Item>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <h3>Cart Page</h3>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Option</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Pic</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub total</th>
+
+
+        </tr>
+       
+        @foreach (var item in ViewBag.cart)
+        {
+    <tr>
+        *
+        <th><a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Item.Id">Remove</a></th>
+        <th>@item.ItemId</th>
+        <th>@item.Item.Name</th>
+        <th><img src="@item.Item.Image.Link" height="100" /></th>
+        <th>@item.Item.Price</th>
+        <th>@item.Quantity</th>
+        <th>@(item.Item.Price * item.Quantity )</th>
+
+
+    </tr>
+        }
+
+        <tr>
+            <td align="right" colspan="6"></td>
+            <td>
+                @ViewBag.total
+            </td>
+
+
+        </tr>
+    </table>
+    <br />
+    <a asp-controller="Shop" asp-action="AllItem">Continue Shopping</a>
+    <a asp-controller="Checkout" asp-action="Index" asp-route-id="">Go to checkout</a>
+
+</body>
+</html>
+
+

@@ -27,51 +27,51 @@ namespace Zoo.Controllers
         public async Task<IActionResult> Shop()
         {
 
-           // var itemList = await _context.Items.Where(x => x.CategoryId == x.Id).ToListAsync();
+            // var itemList = await _context.Items.Where(x => x.CategoryId == x.Id).ToListAsync();
 
             var zooContext = _context.Categories.Include(c => c.Image);
             return View(await zooContext.ToListAsync());
             //return View(itemList);
         }
 
-        //ez a metódus rendezi kategóriákba a termékeket és név illetve ár szerinti rendezés van benne
-        public async Task<IActionResult> GetCategoryDetails(string sortItem, int Id, string searchString)
-        {
-            //ez egy linq lekérdezés ahol az item id egyezik a category id-vel és be vannak includeolva az idegen kulcsok
-            var itemList = await _context.Items.Where(x => x.CategoryId == Id).Include(i => i.Category).Include(i => i.Image).Include(i => i.Local).ToListAsync();
+        ////ez a metódus rendezi kategóriákba a termékeket és név illetve ár szerinti rendezés van benne
+        //public async Task<IActionResult> GetCategoryDetails(string sortItem, int Id, string searchString)
+        //{
+        //    //ez egy linq lekérdezés ahol az item id egyezik a category id-vel és be vannak includeolva az idegen kulcsok
+        //    var itemList = await _context.Items.Where(x => x.CategoryId == Id).Include(i => i.Category).Include(i => i.Image).Include(i => i.Local).ToListAsync();
 
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortItem) ? "name_desc" : "";
-            ViewData["PriceSortParm"] = sortItem == "Price" ? "price_desc" : "Price";
-            ViewData["CurrentFilter"] = searchString;
-            var items = from i in itemList
-                        select i;
+        //    ViewData["NameSortParm"] = String.IsNullOrEmpty(sortItem) ? "name_desc" : "";
+        //    ViewData["PriceSortParm"] = sortItem == "Price" ? "price_desc" : "Price";
+        //    ViewData["CurrentFilter"] = searchString;
+        //    var items = from i in itemList
+        //                select i;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                items = items.Where(i => i.Name.Contains(searchString));
-                                       
-            }
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        items = items.Where(i => i.Name.Contains(searchString));
 
-            switch (sortItem)
-            {
-                case "name_desc":
-                    items = items.OrderByDescending(i => i.Name);
-                    break;
-                case "Price":
-                    items = items.OrderBy(i => i.Price);
-                    break;
-                case "price_desc":
-                    items = items.OrderByDescending(i => i.Price);
-                    break;
-                default:
-                    items = items.OrderBy(i => i.Name);
-                    break;
-            }
+        //    }
+
+        //    switch (sortItem)
+        //    {
+        //        case "name_desc":
+        //            items = items.OrderByDescending(i => i.Name);
+        //            break;
+        //        case "Price":
+        //            items = items.OrderBy(i => i.Price);
+        //            break;
+        //        case "price_desc":
+        //            items = items.OrderByDescending(i => i.Price);
+        //            break;
+        //        default:
+        //            items = items.OrderBy(i => i.Name);
+        //            break;
+        //    }
 
 
-            return View(items);
+        //    return View(items);
 
-        }
+        //}
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
