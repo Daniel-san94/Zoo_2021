@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Zoo.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Összes termék</h1>
+
+<!--Kártyák-->
+<a asp-area="" asp-controller="Shop" asp-action="AllItem" asp-route-sortItem="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+<a asp-area="" asp-controller="Shop" asp-action="AllItem" asp-route-sortItem="@ViewData["PriceSortParm"]">@Html.DisplayNameFor(model => model.Price)</a>
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image.Link)" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.Description)</p>
+                    <p class="card-text">Beszerezhető: @Html.DisplayFor(modelItem => item.Local.Address)</p>
+                    <p class="card-text"><small class="text-muted">Ár: @Html.DisplayFor(modelItem => item.Price)</small></p>
+                    <p><a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id">Buy Now</a></p>
+                    <p>  <a asp-controller="Items" asp-action="Details" asp-route-id="@item.Id">Details</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!--Kártyák vége-->

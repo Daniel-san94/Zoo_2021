@@ -1,15 +1,13 @@
 {
   "dependencies": {
-    "mssql2": {
-      "type": "mssql.local",
-      "connectionId": "AllatkertAuthDbContextConnection"
-    },
+
     "secrets1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/Allatkertwebshopvault",
       "type": "secrets.keyVault",
       "connectionId": "VaultUri",
       "secretStore": null
     },
+
     "mssql1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/allatkert/databases/zoo",
       "type": "mssql.azure",

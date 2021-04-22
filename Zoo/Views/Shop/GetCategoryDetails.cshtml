@@ -23,13 +23,13 @@
     <thead>
         <tr>
             <th>
-                <a asp-area="" asp-controller="Categories" asp-action="GetCategoryDetails" asp-route-sortItem="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+                <a asp-area="" asp-controller="Shop" asp-action="GetCategoryDetails" asp-route-sortItem="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                <a asp-area="" asp-controller="Categories" asp-action="GetCategoryDetails" asp-route-sortItem="@ViewData["PriceSortParm"]">@Html.DisplayNameFor(model => model.Price)</a>
+                <a asp-area="" asp-controller="Shop" asp-action="GetCategoryDetails" asp-route-sortItem="@ViewData["PriceSortParm"]">@Html.DisplayNameFor(model => model.Price)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)

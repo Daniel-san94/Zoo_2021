@@ -25,6 +25,13 @@ namespace Zoo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddDbContext<zooContext>(options => options.UseSqlServer(
                 Configuration["ConnectionStrings:DbConnection"]));
            /* services.AddDbContext<AllatkertAuthDbContext>(options => options.UseSqlServer(
@@ -43,6 +50,7 @@ namespace Zoo
 
 
             app.UseHttpsRedirection();
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
