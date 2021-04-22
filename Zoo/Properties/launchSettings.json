@@ -14,7 +14,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "VaultUri": "https://allatkertwebshopvault.vault.azure.net/",
-        "AZURE_USERNAME": "AY60J4@hallgato.uni-neumann.hu"
+        "AZURE_USERNAME": "VQX0XW@hallgato.uni-neumann.hu"
       }
     },
     "Allatkert_websop": {
@@ -25,7 +25,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "VaultUri": "https://allatkertwebshopvault.vault.azure.net/",
-        "AZURE_USERNAME": "AY60J4@hallgato.uni-neumann.hu"
+        "AZURE_USERNAME": "VQX0XW@hallgato.uni-neumann.hu"
       }
     }
   }
