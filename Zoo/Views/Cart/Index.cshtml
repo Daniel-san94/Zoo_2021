@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<Zoo.Models.Item>
 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,21 +24,21 @@
 
 
         </tr>
-       
+
         @foreach (var item in ViewBag.cart)
         {
-    <tr>
-        *
-        <th><a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Item.Id">Remove</a></th>
-        <th>@item.ItemId</th>
-        <th>@item.Item.Name</th>
-        <th><img src="@item.Item.Image.Link" height="100" /></th>
-        <th>@item.Item.Price</th>
-        <th>@item.Quantity</th>
-        <th>@(item.Item.Price * item.Quantity )</th>
+            <tr>
+                
+                <th><a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Item.Id">Remove</a></th>
+                <th>@item.ItemId</th>
+                <th>@item.Item.Name</th>
+                <th><img src="@item.Item.Image.Link" height="100" /></th>
+                <th>@item.Item.Price</th>
+                <th>@item.Quantity</th>
+                <th>@(item.Item.Price * item.Quantity )</th>
 
 
-    </tr>
+            </tr>
         }
 
         <tr>
@@ -47,7 +52,9 @@
     </table>
     <br />
     <a asp-controller="Shop" asp-action="AllItem">Continue Shopping</a>
-    <a asp-controller="Checkout" asp-action="Index" asp-route-id="">Go to checkout</a>
+    <br/>
+    <a asp-controller="Cart" asp-action="Create" asp-route-id="">Check out</a>
+
 
 </body>
 </html>
