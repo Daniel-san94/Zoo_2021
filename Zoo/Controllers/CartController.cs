@@ -1,16 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Zoo.Areas.Identity.Data;
 using Zoo.Helpers;
 using Zoo.Models;
+
+
 
 namespace Zoo.Controllers
 {
     public class CartController : Controller
     {
+
         private readonly zooContext _context;
 
         public CartController(zooContext context)
@@ -69,7 +75,6 @@ namespace Zoo.Controllers
                 else
                 {
                     cart.Add(new OrderItem { ItemId = id, Quantity = 1 });
-
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
 
@@ -82,6 +87,36 @@ namespace Zoo.Controllers
             List<OrderItem> cart = SessionHelper.GetObjectFromJson<List<OrderItem>>(HttpContext.Session, "cart");
             int index = isExist(id);
             cart.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Create()
+        {
+            Claim userIdClaim;
+            String userIdValue = "";
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (claimsIdentity != null)
+            {
+                // the principal identity is a claims identity.
+                // now we need to find the NameIdentifier claim
+                userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+
+                if (userIdClaim != null)
+                {
+                    userIdValue = userIdClaim.Value;
+                } 
+            }
+            var cart = SessionHelper.GetObjectFromJson<List<OrderItem>>(HttpContext.Session, "cart");
+            var orderHead = new Order {   
+                OrderItems = cart, 
+                OrderStatecodeId = 1,
+                UserId = userIdValue, //"6a4c72ef-e663-4ad9-af76-d350aa919433",             
+            };
+            _context.Add(orderHead);
+            _context.SaveChanges();
+            cart.Clear();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToAction("Index");
 
